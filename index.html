@@ -1,155 +1,915 @@
 <!DOCTYPE html>
-<!--
-  ================================================================
-  READ THIS BEFORE YOU PASTE ANYTHING
-
-  When Gemini gives you a page, you do NOT paste it into a part of
-  this file. You replace the entire file.
-
-  Click into the editor, press Ctrl+A (Cmd+A on Mac), press Delete,
-  then paste. Everything here is meant to be thrown away.
-
-  Do that only AFTER your live link works. Get the link first.
-  ================================================================
--->
 <html lang="en">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>My first site</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700&family=Unbounded:wght@600;800&display=swap" rel="stylesheet">
-<style>
-  :root {
-    --navy: #0d1d30;
-    --card: #142a44;
-    --line: #27466a;
-    --aqua: #6de1d7;
-    --text: #ffffff;
-    --muted: #94a9bf;
-  }
-  * { box-sizing: border-box; }
-  body {
-    margin: 0;
-    background: var(--navy);
-    color: var(--text);
-    font-family: "Manrope", system-ui, -apple-system, "Segoe UI", sans-serif;
-    line-height: 1.6;
-    display: flex;
-    justify-content: center;
-    padding: 6vh 20px;
-  }
-  main { width: 100%; max-width: 640px; }
-  .badge {
-    display: inline-block;
-    font-size: 12px;
-    font-weight: 700;
-    letter-spacing: 0.16em;
-    text-transform: uppercase;
-    color: var(--aqua);
-    margin-bottom: 18px;
-  }
-  h1 {
-    font-family: "Unbounded", "Manrope", sans-serif;
-    font-weight: 800;
-    font-size: clamp(38px, 9vw, 68px);
-    letter-spacing: -0.05em;
-    line-height: 1.02;
-    margin: 0 0 8px;
-  }
-  .name {
-    font-family: "Unbounded", "Manrope", sans-serif;
-    font-weight: 600;
-    font-size: clamp(18px, 4vw, 24px);
-    letter-spacing: -0.04em;
-    color: var(--aqua);
-    margin: 0 0 24px;
-  }
-  p.lead { font-size: 18px; color: var(--muted); margin: 0 0 34px; }
-  .card {
-    background: var(--card);
-    border: 1px solid var(--line);
-    border-radius: 12px;
-    padding: 26px 28px;
-    margin-bottom: 18px;
-  }
-  .card h2 {
-    font-family: "Unbounded", "Manrope", sans-serif;
-    font-weight: 600;
-    font-size: 15px;
-    letter-spacing: -0.03em;
-    text-transform: uppercase;
-    color: var(--aqua);
-    margin: 0 0 16px;
-  }
-  ol { margin: 0; padding-left: 20px; }
-  li { margin-bottom: 12px; color: var(--muted); }
-  li:last-child { margin-bottom: 0; }
-  li b { color: var(--text); font-weight: 700; }
-  code {
-    font-family: ui-monospace, "SF Mono", Consolas, monospace;
-    font-size: 0.92em;
-    background: #0a1727;
-    border: 1px solid var(--line);
-    border-radius: 5px;
-    padding: 1px 6px;
-    color: var(--aqua);
-  }
-  a { color: var(--aqua); }
-  footer {
-    margin-top: 30px;
-    font-size: 14px;
-    color: #6e839a;
-  }
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pop Culture Pulse | Personal Trend Tracker</title>
+    <!-- Google Font Link -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg-color: #0d0f17;
+            --surface-color: #171a26;
+            --surface-hover: #212638;
+            --border-color: #2e344a;
+            --text-main: #f0f3fe;
+            --text-muted: #94a3b8;
+            --accent-pink: #ff2a85;
+            --accent-purple: #8b5cf6;
+            --accent-cyan: #06b6d4;
+            --accent-yellow: #f59e0b;
+            --gradient-primary: linear-gradient(135deg, #ff2a85 0%, #8b5cf6 100%);
+            --gradient-secondary: linear-gradient(135deg, #06b6d4 0%, #3b82f6 100%);
+            --radius-lg: 20px;
+            --radius-md: 12px;
+            --radius-sm: 8px;
+            --shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.5);
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Utility Classes */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        .gradient-text {
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .tag {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .tag-music { background: rgba(255, 42, 133, 0.15); color: #ff529d; border: 1px solid rgba(255, 42, 133, 0.3); }
+        .tag-internet { background: rgba(6, 182, 212, 0.15); color: #38bdf8; border: 1px solid rgba(6, 182, 212, 0.3); }
+        .tag-fashion { background: rgba(245, 158, 11, 0.15); color: #fbbf24; border: 1px solid rgba(245, 158, 11, 0.3); }
+        .tag-film { background: rgba(139, 92, 246, 0.15); color: #a78bfa; border: 1px solid rgba(139, 92, 246, 0.3); }
+
+        /* Navigation */
+        nav {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background: rgba(13, 15, 23, 0.8);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 80px;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 800;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+            color: var(--text-main);
+        }
+
+        .logo-dot {
+            width: 12px;
+            height: 12px;
+            background: var(--accent-pink);
+            border-radius: 50%;
+            box-shadow: 0 0 10px var(--accent-pink);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 32px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover, .nav-links a.active {
+            color: var(--text-main);
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 80px 0 60px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            align-items: center;
+        }
+
+        .hero-content h1 {
+            font-size: 3.5rem;
+            line-height: 1.1;
+            font-weight: 800;
+            margin-bottom: 20px;
+        }
+
+        .hero-content p {
+            font-size: 1.15rem;
+            color: var(--text-muted);
+            margin-bottom: 32px;
+            max-width: 500px;
+        }
+
+        .profile-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            background: var(--surface-color);
+            padding: 8px 16px;
+            border-radius: 30px;
+            border: 1px solid var(--border-color);
+            margin-bottom: 24px;
+        }
+
+        .avatar {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: var(--gradient-primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 0.8rem;
+        }
+
+        .hero-stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 16px;
+            background: var(--surface-color);
+            padding: 24px;
+            border-radius: var(--radius-lg);
+            border: 1px solid var(--border-color);
+        }
+
+        .stat-card h3 {
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: var(--text-main);
+        }
+
+        .stat-card p {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            margin: 0;
+        }
+
+        /* Ticker Bar */
+        .ticker-wrap {
+            width: 100%;
+            background: rgba(255, 42, 133, 0.05);
+            border-y: 1px solid rgba(255, 42, 133, 0.2);
+            overflow: hidden;
+            padding: 12px 0;
+            margin-bottom: 60px;
+        }
+
+        .ticker {
+            display: flex;
+            white-space: nowrap;
+            animation: ticker 30s linear infinite;
+        }
+
+        .ticker-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 0 30px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            color: var(--text-muted);
+        }
+
+        .ticker-item span.highlight {
+            color: var(--accent-pink);
+        }
+
+        @keyframes ticker {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        /* Section Titles */
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            margin-bottom: 32px;
+        }
+
+        .section-title {
+            font-size: 2rem;
+            font-weight: 800;
+        }
+
+        .section-subtitle {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            margin-top: 4px;
+        }
+
+        /* Controls / Filters */
+        .filter-container {
+            display: flex;
+            gap: 12px;
+            overflow-x: auto;
+            padding-bottom: 8px;
+        }
+
+        .filter-btn {
+            background: var(--surface-color);
+            border: 1px solid var(--border-color);
+            color: var(--text-muted);
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-weight: 600;
+            font-size: 0.85rem;
+            cursor: pointer;
+            transition: var(--transition);
+            white-space: nowrap;
+        }
+
+        .filter-btn:hover, .filter-btn.active {
+            background: var(--text-main);
+            color: var(--bg-color);
+            border-color: var(--text-main);
+        }
+
+        /* Trend Radar / Main Cards */
+        .trends-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+            gap: 24px;
+            margin-bottom: 80px;
+        }
+
+        .trend-card {
+            background: var(--surface-color);
+            border-radius: var(--radius-lg);
+            border: 1px solid var(--border-color);
+            padding: 24px;
+            transition: var(--transition);
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .trend-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(255, 255, 255, 0.2);
+            box-shadow: var(--shadow);
+        }
+
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 16px;
+        }
+
+        .card-title {
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .card-desc {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            margin-bottom: 20px;
+            flex-grow: 1;
+        }
+
+        .card-metrics {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(0,0,0,0.2);
+            padding: 12px 16px;
+            border-radius: var(--radius-md);
+            margin-bottom: 16px;
+        }
+
+        .metric {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .metric-label {
+            font-size: 0.7rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+        }
+
+        .metric-value {
+            font-weight: 700;
+            font-size: 0.95rem;
+        }
+
+        .metric-value.up { color: #10b981; }
+        .metric-value.peak { color: var(--accent-pink); }
+
+        .my-take {
+            border-top: 1px solid var(--border-color);
+            padding-top: 16px;
+            font-size: 0.85rem;
+            font-style: italic;
+            color: #cbd5e1;
+        }
+
+        .my-take strong {
+            font-style: normal;
+            color: var(--accent-cyan);
+            margin-right: 4px;
+        }
+
+        /* Interactive Dashboard Widget */
+        .analytics-section {
+            background: var(--surface-color);
+            border-radius: var(--radius-lg);
+            border: 1px solid var(--border-color);
+            padding: 32px;
+            margin-bottom: 80px;
+        }
+
+        .chart-container {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            margin-top: 24px;
+        }
+
+        .bar-group {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .bar-info {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+
+        .bar-bg {
+            height: 12px;
+            background: rgba(255,255,255,0.05);
+            border-radius: 6px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .bar-fill {
+            height: 100%;
+            border-radius: 6px;
+            width: 0%;
+            transition: width 1s ease-out;
+        }
+
+        /* Trendometer Tool */
+        .interactive-tool {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 32px;
+            background: linear-gradient(180deg, var(--surface-color) 0%, rgba(23, 26, 38, 0.5) 100%);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-lg);
+            padding: 32px;
+            margin-bottom: 80px;
+        }
+
+        .tool-inputs {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .input-group {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .input-group label {
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--text-muted);
+        }
+
+        .input-group input, .input-group select {
+            background: var(--bg-color);
+            border: 1px solid var(--border-color);
+            padding: 12px 16px;
+            border-radius: var(--radius-md);
+            color: var(--text-main);
+            font-family: inherit;
+            outline: none;
+        }
+
+        .input-group input:focus, .input-group select:focus {
+            border-color: var(--accent-pink);
+        }
+
+        .action-btn {
+            background: var(--gradient-primary);
+            color: white;
+            border: none;
+            padding: 14px;
+            border-radius: var(--radius-md);
+            font-weight: 700;
+            cursor: pointer;
+            transition: var(--transition);
+            margin-top: 8px;
+        }
+
+        .action-btn:hover {
+            opacity: 0.9;
+            transform: translateY(-2px);
+        }
+
+        .result-box {
+            background: var(--bg-color);
+            border-radius: var(--radius-md);
+            border: 1px dashed var(--border-color);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 24px;
+        }
+
+        .score-display {
+            font-size: 3rem;
+            font-weight: 800;
+            color: var(--accent-pink);
+            margin: 10px 0;
+        }
+
+        /* Footer */
+        footer {
+            border-top: 1px solid var(--border-color);
+            padding: 40px 0;
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+
+        .social-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .social-links a:hover {
+            color: var(--accent-pink);
+        }
+
+        /* Responsive */
+        @media (max-width: 900px) {
+            .hero {
+                grid-template-columns: 1fr;
+            }
+            .interactive-tool {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+            .section-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 16px;
+            }
+            .hero-stats {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
 </head>
 <body>
-<main>
 
-  <span class="badge">Cal Poly Vibe Coding &middot; Session 01</span>
+    <!-- Navigation -->
+    <nav>
+        <div class="container nav-container">
+            <a href="#" class="logo">
+                <div class="logo-dot"></div>
+                PopPulse
+            </a>
+            <ul class="nav-links">
+                <li><a href="#feed" class="active">Trend Feed</a></li>
+                <li><a href="#analytics">Velocity</a></li>
+                <li><a href="#predictor">Trendometer</a></li>
+                <li><a href="#about">About</a></li>
+            </ul>
+        </div>
+    </nav>
 
-  <h1>It&rsquo;s live.</h1>
+    <div class="container">
+        <!-- Hero Section -->
+        <section class="hero" id="about">
+            <div class="hero-content">
+                <div class="profile-badge">
+                    <div class="avatar">AY</div>
+                    <span>Curated by Alex Vance</span>
+                </div>
+                <h1>Decoding <span class="gradient-text">Culture</span> in Real-Time</h1>
+                <p>I analyze micro-trends, viral phenomena, music shifts, and internet aesthetics before they reach the mainstream. Welcome to my personal pop culture radar.</p>
+            </div>
+            <div class="hero-stats">
+                <div class="stat-card">
+                    <h3 class="gradient-text">84%</h3>
+                    <p>Accuracy Rate</p>
+                </div>
+                <div class="stat-card">
+                    <h3>120+</h3>
+                    <p>Trends Tracked</p>
+                </div>
+                <div class="stat-card">
+                    <h3>Weekly</h3>
+                    <p>Data Updates</p>
+                </div>
+            </div>
+        </section>
+    </div>
 
-  <!-- Step 5: change the name below to yours, then commit. -->
-  <p class="name">Built by Maya Franey</p>
+    <!-- Ticker Tape -->
+    <div class="ticker-wrap">
+        <div class="ticker">
+            <div class="ticker-item"><span class="highlight">RISING:</span> Neo-Y2K Aesthetics</div>
+            <div class="ticker-item"><span class="highlight">PEAKING:</span> Ambient Pop Revivals</div>
+            <div class="ticker-item"><span class="highlight">DECLINING:</span> Corporate Minimalism</div>
+            <div class="ticker-item"><span class="highlight">RISING:</span> Hyper-Niche Micro-Communities</div>
+            <div class="ticker-item"><span class="highlight">NEW:</span> AI-Generated Synthwave</div>
+            <!-- Repeat for smooth scroll -->
+            <div class="ticker-item"><span class="highlight">RISING:</span> Neo-Y2K Aesthetics</div>
+            <div class="ticker-item"><span class="highlight">PEAKING:</span> Ambient Pop Revivals</div>
+            <div class="ticker-item"><span class="highlight">DECLINING:</span> Corporate Minimalism</div>
+        </div>
+    </div>
 
-  <p class="lead">
-    This page is on the internet. Anyone you send this link to can open it,
-    on any device, right now. You made that happen in about five minutes.
-  </p>
+    <div class="container">
+        <!-- Main Trends Feed -->
+        <section id="feed" style="margin-bottom: 60px;">
+            <div class="section-header">
+                <div>
+                    <h2 class="section-title">Current Trend Radar</h2>
+                    <p class="section-subtitle">Real-time breakdown of shifts in music, fashion, and internet culture.</p>
+                </div>
+                <div class="filter-container">
+                    <button class="filter-btn active" onclick="filterTrends('all')">All Culture</button>
+                    <button class="filter-btn" onclick="filterTrends('music')">Music</button>
+                    <button class="filter-btn" onclick="filterTrends('internet')">Internet</button>
+                    <button class="filter-btn" onclick="filterTrends('fashion')">Fashion</button>
+                    <button class="filter-btn" onclick="filterTrends('film')">Film & TV</button>
+                </div>
+            </div>
 
-  <div class="card">
-    <h2>Three things, in this order</h2>
-    <ol>
-      <li><b>Put your name on it.</b> Edit <code>index.html</code>, change
-        YOUR NAME HERE above, commit, refresh this page.</li>
-      <li><b>Submit this link.</b> Go to
-        <a href="https://www.calpolyvibecoding.com/">calpolyvibecoding.com</a>,
-        make an account, and paste this URL in. That is how you get counted,
-        and how Claude seats get assigned.</li>
-      <li><b>Then build.</b> Open Gemini, get a page, and replace this entire
-        file with it.</li>
-    </ol>
-  </div>
+            <div class="trends-grid" id="trendsGrid">
+                <!-- Dynamically populated by JS -->
+            </div>
+        </section>
 
-  <div class="card">
-    <h2>How to replace this page</h2>
-    <ol>
-      <li>Copy what Gemini gives you with the <b>copy button</b> on the code
-        block. Do not click and drag.</li>
-      <li>Open <code>index.html</code> here and click the pencil icon.</li>
-      <li><b>Ctrl+A</b> (<b>Cmd+A</b> on Mac), then <b>Delete</b>. All of it.
-        Yes, really.</li>
-      <li>Paste, commit, refresh.</li>
-    </ol>
-  </div>
+        <!-- Analytics / Velocity Section -->
+        <section class="analytics-section" id="analytics">
+            <div class="section-header">
+                <div>
+                    <h2 class="section-title">Cultural Velocity Index</h2>
+                    <p class="section-subtitle">Comparing the momentum of current movements.</p>
+                </div>
+            </div>
+            
+            <div class="chart-container">
+                <div class="bar-group">
+                    <div class="bar-info">
+                        <span>Digital Maximalism (Web3/VR Design)</span>
+                        <span style="color: var(--accent-pink);">92% Volume</span>
+                    </div>
+                    <div class="bar-bg">
+                        <div class="bar-fill" style="background: var(--gradient-primary);" data-width="92%"></div>
+                    </div>
+                </div>
 
-  <footer>
-    Nothing on this page is precious. It exists so the link has something to
-    show before you have something of your own.
-  </footer>
+                <div class="bar-group">
+                    <div class="bar-info">
+                        <span>Gorpcore & Technical Apparel</span>
+                        <span style="color: var(--accent-cyan);">78% Volume</span>
+                    </div>
+                    <div class="bar-bg">
+                        <div class="bar-fill" style="background: var(--gradient-secondary);" data-width="78%"></div>
+                    </div>
+                </div>
 
-</main>
+                <div class="bar-group">
+                    <div class="bar-info">
+                        <span>Nostalgic 2000s Bloghouse Music</span>
+                        <span style="color: var(--accent-yellow);">64% Volume</span>
+                    </div>
+                    <div class="bar-bg">
+                        <div class="bar-fill" style="background: var(--accent-yellow);" data-width="64%"></div>
+                    </div>
+                </div>
+
+                <div class="bar-group">
+                    <div class="bar-info">
+                        <span>Short-Form Vertical Cinema</span>
+                        <span style="color: var(--accent-purple);">45% Volume</span>
+                    </div>
+                    <div class="bar-bg">
+                        <div class="bar-fill" style="background: var(--accent-purple);" data-width="45%"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Interactive Widget: The Trendometer -->
+        <section class="interactive-tool" id="predictor">
+            <div class="tool-inputs">
+                <h2 class="section-title">The Trendometer</h2>
+                <p class="section-subtitle">Spotting something interesting? Test its virality potential with my prediction algorithm.</p>
+                
+                <div class="input-group">
+                    <label for="trendName">Trend / Phrase Name</label>
+                    <input type="text" id="trendName" placeholder="e.g. Cyber-Prep Fashion">
+                </div>
+
+                <div class="input-group">
+                    <label for="trendSource">Primary Medium</label>
+                    <select id="trendSource">
+                        <option value="tiktok">TikTok / Short Video</option>
+                        <option value="fashion">Underground Fashion</option>
+                        <option value="music">SoundCloud / Niche Music</option>
+                        <option value="tv">Streaming Series</option>
+                    </select>
+                </div>
+
+                <div class="input-group">
+                    <label for="trendAge">How long has it existed?</label>
+                    <select id="trendAge">
+                        <option value="days">A few days (Brand New)</option>
+                        <option value="weeks">A few weeks (Gaining Traction)</option>
+                        <option value="months">A few months (Established)</option>
+                    </select>
+                </div>
+
+                <button class="action-btn" onclick="calculateTrend()">Calculate Virality</button>
+            </div>
+
+            <div class="result-box" id="resultBox">
+                <span class="tag tag-internet">Awaiting Input</span>
+                <div class="score-display" id="scoreDisplay">--</div>
+                <p id="verdictText" style="color: var(--text-muted); font-size: 0.95rem;">Enter a phenomenon on the left to measure its cultural staying power.</p>
+            </div>
+        </section>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="social-links">
+                <a href="#">Twitter / X</a>
+                <a href="#">Substack</a>
+                <a href="#">Instagram</a>
+                <a href="#">Spotify</a>
+            </div>
+            <p>&copy; 2026 Pop Culture Pulse. Curated independently.</p>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        // Data Array for Pop Culture Trends
+        const trendsData = [
+            {
+                id: 1,
+                title: "Dark Academia Revival",
+                category: "fashion",
+                desc: "Tweed blazers and vintage literature aesthetics are making a second wave, blended with modern streetwear silhouettes.",
+                stage: "Rising",
+                metric: "+140% Search",
+                myTake: "Expect this to dominate autumn wardrobes as university aesthetics mix with gorpcore."
+            },
+            {
+                id: 2,
+                title: "Micro-BPM Electronic",
+                category: "music",
+                desc: "Ultra-fast track tempos (160+ BPM) borrowed from early 2000s UK garage and drum & bass are invading mainstream pop.",
+                stage: "Peak Momentum",
+                metric: "#1 Spotify Viral",
+                myTake: "Mainstream pop artists are dropping half-speed vocals over frantic drums. It’s here to stay."
+            },
+            {
+                id: 3,
+                title: "Anti-Aesthetic Vlogging",
+                category: "internet",
+                desc: "Unedited, raw, grainy video clips replacing heavily color-graded and meticulously planned social media reels.",
+                stage: "Emerging",
+                metric: "3.4M Views Avg",
+                myTake: "Audiences are fatigued by hyper-curation. Authenticity is the ultimate luxury right now."
+            },
+            {
+                id: 4,
+                title: "Neo-Noir Sci-Fi",
+                category: "film",
+                desc: "High-contrast visuals, synth-heavy soundtracks, and dystopian themes dominated recent cinema drops.",
+                stage: "Plateau",
+                metric: "$450M Box Office",
+                myTake: "Great aesthetics, but saturation is near. Directors will need stronger scripts to keep interest."
+            },
+            {
+                id: 5,
+                title: "Savantcore / Math-Pop",
+                category: "music",
+                desc: "Complex time signatures disguised under bubblegum melodies. Intricate instrumentation made accessible.",
+                stage: "Rising",
+                metric: "+85% Streams",
+                myTake: "Musicians are flexing technical skill while keeping hooks catchy. A brilliant evolution."
+            },
+            {
+                id: 6,
+                title: "Digital Analog Fusion",
+                category: "internet",
+                desc: "Using modern AI tools to generate 90s camcorder-style artifacts and VHS textures.",
+                stage: "Niche",
+                metric: "Trending on TikTok",
+                myTake: "Gen Z nostalgia for tech they barely experienced continues to drive digital design trends."
+            }
+        ];
+
+        // Function to render trend cards
+        function renderTrends(filter = 'all') {
+            const container = document.getElementById('trendsGrid');
+            container.innerHTML = '';
+
+            const filteredData = filter === 'all' 
+                ? trendsData 
+                : trendsData.filter(item => item.category === filter);
+
+            filteredData.forEach(item => {
+                const card = document.createElement('div');
+                card.className = 'trend-card';
+                
+                // Color mapping for tags
+                let tagClass = 'tag-internet';
+                if(item.category === 'music') tagClass = 'tag-music';
+                if(item.category === 'fashion') tagClass = 'tag-fashion';
+                if(item.category === 'film') tagClass = 'tag-film';
+
+                card.innerHTML = `
+                    <div class="card-header">
+                        <span class="tag ${tagClass}">${item.category}</span>
+                        <span style="font-size: 0.8rem; color: var(--text-muted); font-weight:600;">${item.stage}</span>
+                    </div>
+                    <h3 class="card-title">${item.title}</h3>
+                    <p class="card-desc">${item.desc}</p>
+                    <div class="card-metrics">
+                        <div class="metric">
+                            <span class="metric-label">Status</span>
+                            <span class="metric-value up">${item.stage}</span>
+                        </div>
+                        <div class="metric">
+                            <span class="metric-label">Impact</span>
+                            <span class="metric-value peak">${item.metric}</span>
+                        </div>
+                    </div>
+                    <div class="my-take">
+                        <strong>My Take:</strong> "${item.myTake}"
+                    </div>
+                `;
+                container.appendChild(card);
+            });
+        }
+
+        // Filter button clicks
+        function filterTrends(category) {
+            // Update active state on buttons
+            const buttons = document.querySelectorAll('.filter-btn');
+            buttons.forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+
+            renderTrends(category);
+        }
+
+        // Animate progress bars on scroll
+        function animateBars() {
+            const fills = document.querySelectorAll('.bar-fill');
+            fills.forEach(fill => {
+                const targetWidth = fill.getAttribute('data-width');
+                fill.style.width = targetWidth;
+            });
+        }
+
+        // Trendometer Calculator Logic
+        function calculateTrend() {
+            const name = document.getElementById('trendName').value.trim();
+            const source = document.getElementById('trendSource').value;
+            const age = document.getElementById('trendAge').value;
+            
+            const scoreDisplay = document.getElementById('scoreDisplay');
+            const verdictText = document.getElementById('verdictText');
+
+            if(!name) {
+                alert('Please enter a trend name first!');
+                return;
+            }
+
+            // Simple pseudo-algorithm for virality score
+            let score = 50;
+            
+            if (source === 'tiktok') score += 25;
+            if (source === 'fashion') score += 15;
+            if (source === 'music') score += 20;
+            if (source === 'tv') score += 10;
+
+            if (age === 'days') score += 20; // High hype potential
+            if (age === 'weeks') score += 10;
+            if (age === 'months') score -= 15; // Risk of oversaturation
+
+            // Add slight randomness for dynamic feel
+            score += Math.floor(Math.random() * 10) - 5;
+            score = Math.min(99, Math.max(15, score)); // Clamp between 15 and 99
+
+            // Output narrative
+            let narrative = "";
+            if (score > 80) {
+                narrative = `<strong>"${name}"</strong> is on track for massive mainstream saturation. Expect high brand adoption soon.`;
+            } else if (score > 50) {
+                narrative = `<strong>"${name}"</strong> has steady underground traction. Perfect for niche subcultures.`;
+            } else {
+                narrative = `<strong>"${name}"</strong> may be fading or overly saturated. Approach with caution.`;
+            }
+
+            // Animate counter
+            let current = 0;
+            const timer = setInterval(() => {
+                if(current >= score) {
+                    clearInterval(timer);
+                } else {
+                    current++;
+                    scoreDisplay.innerText = current + "/100";
+                }
+            }, 15);
+
+            verdictText.innerHTML = narrative;
+        }
+
+        // On Load Initializations
+        window.onload = () => {
+            renderTrends();
+            // Trigger bar animation shortly after loading
+            setTimeout(animateBars, 300);
+        };
+    </script>
 </body>
 </html>

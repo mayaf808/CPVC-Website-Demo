@@ -3,31 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pop Culture Pulse | Personal Trend Tracker</title>
-    <!-- Google Font Link -->
+    <title>Pop Culture Trend Radar</title>
+    <!-- Google Font -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;700;800&display=swap" rel="stylesheet">
-    
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg-color: #0d0f17;
-            --surface-color: #171a26;
-            --surface-hover: #212638;
-            --border-color: #2e344a;
-            --text-main: #f0f3fe;
+            --bg-color: #0b0e14;
+            --card-bg: #141923;
+            --card-hover: #1c2331;
+            --accent: #00f0ff;
+            --accent-dim: rgba(0, 240, 255, 0.15);
+            --border: #232d3f;
+            --text-main: #f1f5f9;
             --text-muted: #94a3b8;
-            --accent-pink: #ff2a85;
-            --accent-purple: #8b5cf6;
-            --accent-cyan: #06b6d4;
-            --accent-yellow: #f59e0b;
-            --gradient-primary: linear-gradient(135deg, #ff2a85 0%, #8b5cf6 100%);
-            --gradient-secondary: linear-gradient(135deg, #06b6d4 0%, #3b82f6 100%);
-            --radius-lg: 20px;
-            --radius-md: 12px;
-            --radius-sm: 8px;
-            --shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.5);
-            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            --radius-lg: 16px;
+            --radius-md: 10px;
+            --radius-sm: 6px;
+            --font-main: 'Space Grotesk', sans-serif;
         }
 
         * {
@@ -37,879 +31,612 @@
         }
 
         body {
-            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-family: var(--font-main);
             background-color: var(--bg-color);
             color: var(--text-main);
             line-height: 1.6;
-            overflow-x: hidden;
+            padding-bottom: 60px;
         }
 
-        /* Utility Classes */
         .container {
-            max-width: 1200px;
+            max-width: 1100px;
             margin: 0 auto;
-            padding: 0 24px;
+            padding: 0 20px;
         }
 
-        .gradient-text {
-            background: var(--gradient-primary);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        .tag {
-            display: inline-block;
-            padding: 4px 12px;
-            border-radius: 20px;
-            font-size: 0.75rem;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
-
-        .tag-music { background: rgba(255, 42, 133, 0.15); color: #ff529d; border: 1px solid rgba(255, 42, 133, 0.3); }
-        .tag-internet { background: rgba(6, 182, 212, 0.15); color: #38bdf8; border: 1px solid rgba(6, 182, 212, 0.3); }
-        .tag-fashion { background: rgba(245, 158, 11, 0.15); color: #fbbf24; border: 1px solid rgba(245, 158, 11, 0.3); }
-        .tag-film { background: rgba(139, 92, 246, 0.15); color: #a78bfa; border: 1px solid rgba(139, 92, 246, 0.3); }
-
-        /* Navigation */
-        nav {
+        /* Header */
+        header {
+            border-bottom: 1px solid var(--border);
+            padding: 20px 0;
             position: sticky;
             top: 0;
+            background: rgba(11, 14, 20, 0.9);
+            backdrop-filter: blur(10px);
             z-index: 100;
-            background: rgba(13, 15, 23, 0.8);
-            backdrop-filter: blur(12px);
-            border-bottom: 1px solid var(--border-color);
         }
 
-        .nav-container {
+        .header-content {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            height: 80px;
         }
 
-        .logo {
+        .brand {
             font-size: 1.5rem;
-            font-weight: 800;
+            font-weight: 700;
+            color: var(--accent);
+            text-transform: uppercase;
+            letter-spacing: 1px;
             display: flex;
             align-items: center;
             gap: 10px;
-            text-decoration: none;
-            color: var(--text-main);
         }
 
-        .logo-dot {
-            width: 12px;
-            height: 12px;
-            background: var(--accent-pink);
+        .brand-dot {
+            width: 10px;
+            height: 10px;
+            background: var(--accent);
             border-radius: 50%;
-            box-shadow: 0 0 10px var(--accent-pink);
+            box-shadow: 0 0 10px var(--accent);
         }
 
-        .nav-links {
+        nav ul {
             display: flex;
-            gap: 32px;
             list-style: none;
+            gap: 20px;
         }
 
-        .nav-links a {
+        nav a {
             color: var(--text-muted);
             text-decoration: none;
-            font-weight: 600;
-            font-size: 0.95rem;
-            transition: var(--transition);
-        }
-
-        .nav-links a:hover, .nav-links a.active {
-            color: var(--text-main);
-        }
-
-        /* Hero Section */
-        .hero {
-            padding: 80px 0 60px;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 40px;
-            align-items: center;
-        }
-
-        .hero-content h1 {
-            font-size: 3.5rem;
-            line-height: 1.1;
-            font-weight: 800;
-            margin-bottom: 20px;
-        }
-
-        .hero-content p {
-            font-size: 1.15rem;
-            color: var(--text-muted);
-            margin-bottom: 32px;
-            max-width: 500px;
-        }
-
-        .profile-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 12px;
-            background: var(--surface-color);
-            padding: 8px 16px;
-            border-radius: 30px;
-            border: 1px solid var(--border-color);
-            margin-bottom: 24px;
-        }
-
-        .avatar {
-            width: 32px;
-            height: 32px;
-            border-radius: 50%;
-            background: var(--gradient-primary);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: bold;
-            font-size: 0.8rem;
-        }
-
-        .hero-stats {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 16px;
-            background: var(--surface-color);
-            padding: 24px;
-            border-radius: var(--radius-lg);
-            border: 1px solid var(--border-color);
-        }
-
-        .stat-card h3 {
-            font-size: 1.8rem;
-            font-weight: 800;
-            color: var(--text-main);
-        }
-
-        .stat-card p {
-            font-size: 0.85rem;
-            color: var(--text-muted);
-            margin: 0;
-        }
-
-        /* Ticker Bar */
-        .ticker-wrap {
-            width: 100%;
-            background: rgba(255, 42, 133, 0.05);
-            border-y: 1px solid rgba(255, 42, 133, 0.2);
-            overflow: hidden;
-            padding: 12px 0;
-            margin-bottom: 60px;
-        }
-
-        .ticker {
-            display: flex;
-            white-space: nowrap;
-            animation: ticker 30s linear infinite;
-        }
-
-        .ticker-item {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            padding: 0 30px;
-            font-weight: 600;
+            font-weight: 500;
             font-size: 0.9rem;
+            transition: color 0.2s;
+        }
+
+        nav a:hover {
+            color: var(--accent);
+        }
+
+        /* Hero */
+        .hero {
+            padding: 60px 0 40px;
+            text-align: center;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 16px;
+            letter-spacing: -0.5px;
+        }
+
+        .hero h1 span {
+            color: var(--accent);
+        }
+
+        .hero p {
+            color: var(--text-muted);
+            max-width: 650px;
+            margin: 0 auto 30px;
+            font-size: 1.1rem;
+        }
+
+        .audience-pills {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .pill {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 0.8rem;
             color: var(--text-muted);
         }
 
-        .ticker-item span.highlight {
-            color: var(--accent-pink);
-        }
-
-        @keyframes ticker {
-            0% { transform: translateX(0); }
-            100% { transform: translateX(-50%); }
-        }
-
-        /* Section Titles */
-        .section-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-end;
-            margin-bottom: 32px;
+        /* Section Layout */
+        section {
+            padding: 50px 0;
+            border-bottom: 1px solid var(--border);
         }
 
         .section-title {
-            font-size: 2rem;
-            font-weight: 800;
-        }
-
-        .section-subtitle {
-            color: var(--text-muted);
-            font-size: 0.95rem;
-            margin-top: 4px;
-        }
-
-        /* Controls / Filters */
-        .filter-container {
-            display: flex;
-            gap: 12px;
-            overflow-x: auto;
-            padding-bottom: 8px;
-        }
-
-        .filter-btn {
-            background: var(--surface-color);
-            border: 1px solid var(--border-color);
-            color: var(--text-muted);
-            padding: 8px 16px;
-            border-radius: 20px;
-            font-weight: 600;
-            font-size: 0.85rem;
-            cursor: pointer;
-            transition: var(--transition);
-            white-space: nowrap;
-        }
-
-        .filter-btn:hover, .filter-btn.active {
-            background: var(--text-main);
-            color: var(--bg-color);
-            border-color: var(--text-main);
-        }
-
-        /* Trend Radar / Main Cards */
-        .trends-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
-            gap: 24px;
-            margin-bottom: 80px;
-        }
-
-        .trend-card {
-            background: var(--surface-color);
-            border-radius: var(--radius-lg);
-            border: 1px solid var(--border-color);
-            padding: 24px;
-            transition: var(--transition);
-            display: flex;
-            flex-direction: column;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .trend-card:hover {
-            transform: translateY(-5px);
-            border-color: rgba(255, 255, 255, 0.2);
-            box-shadow: var(--shadow);
-        }
-
-        .card-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 16px;
-        }
-
-        .card-title {
-            font-size: 1.25rem;
+            font-size: 1.8rem;
             font-weight: 700;
             margin-bottom: 8px;
-        }
-
-        .card-desc {
-            color: var(--text-muted);
-            font-size: 0.9rem;
-            margin-bottom: 20px;
-            flex-grow: 1;
-        }
-
-        .card-metrics {
             display: flex;
-            justify-content: space-between;
             align-items: center;
-            background: rgba(0,0,0,0.2);
-            padding: 12px 16px;
-            border-radius: var(--radius-md);
-            margin-bottom: 16px;
+            gap: 12px;
         }
 
-        .metric {
-            display: flex;
-            flex-direction: column;
+        .section-num {
+            font-size: 1rem;
+            color: var(--accent);
+            background: var(--accent-dim);
+            padding: 2px 8px;
+            border-radius: var(--radius-sm);
+            border: 1px solid var(--accent);
         }
 
-        .metric-label {
-            font-size: 0.7rem;
+        .section-desc {
             color: var(--text-muted);
-            text-transform: uppercase;
-        }
-
-        .metric-value {
-            font-weight: 700;
+            margin-bottom: 24px;
             font-size: 0.95rem;
         }
 
-        .metric-value.up { color: #10b981; }
-        .metric-value.peak { color: var(--accent-pink); }
-
-        .my-take {
-            border-top: 1px solid var(--border-color);
-            padding-top: 16px;
-            font-size: 0.85rem;
-            font-style: italic;
-            color: #cbd5e1;
-        }
-
-        .my-take strong {
-            font-style: normal;
-            color: var(--accent-cyan);
-            margin-right: 4px;
-        }
-
-        /* Interactive Dashboard Widget */
-        .analytics-section {
-            background: var(--surface-color);
-            border-radius: var(--radius-lg);
-            border: 1px solid var(--border-color);
-            padding: 32px;
-            margin-bottom: 80px;
-        }
-
-        .chart-container {
-            display: flex;
-            flex-direction: column;
-            gap: 16px;
-            margin-top: 24px;
-        }
-
-        .bar-group {
-            display: flex;
-            flex-direction: column;
-            gap: 6px;
-        }
-
-        .bar-info {
-            display: flex;
-            justify-content: space-between;
-            font-size: 0.9rem;
-            font-weight: 600;
-        }
-
-        .bar-bg {
-            height: 12px;
-            background: rgba(255,255,255,0.05);
-            border-radius: 6px;
-            overflow: hidden;
-            position: relative;
-        }
-
-        .bar-fill {
-            height: 100%;
-            border-radius: 6px;
-            width: 0%;
-            transition: width 1s ease-out;
-        }
-
-        /* Trendometer Tool */
-        .interactive-tool {
+        .grid {
             display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 32px;
-            background: linear-gradient(180deg, var(--surface-color) 0%, rgba(23, 26, 38, 0.5) 100%);
-            border: 1px solid var(--border-color);
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        /* Card Styles */
+        .card {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
             border-radius: var(--radius-lg);
-            padding: 32px;
-            margin-bottom: 80px;
+            padding: 24px;
+            transition: transform 0.2s, border-color 0.2s;
         }
 
-        .tool-inputs {
-            display: flex;
-            flex-direction: column;
-            gap: 16px;
+        .card:hover {
+            transform: translateY(-4px);
+            border-color: var(--accent);
         }
 
-        .input-group {
-            display: flex;
-            flex-direction: column;
-            gap: 8px;
+        .card-tag {
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            color: var(--accent);
+            letter-spacing: 1px;
+            margin-bottom: 10px;
+            display: block;
         }
 
-        .input-group label {
-            font-size: 0.85rem;
-            font-weight: 600;
+        .card h3 {
+            font-size: 1.25rem;
+            margin-bottom: 10px;
+        }
+
+        .card p {
             color: var(--text-muted);
+            font-size: 0.9rem;
+            margin-bottom: 16px;
         }
 
-        .input-group input, .input-group select {
-            background: var(--bg-color);
-            border: 1px solid var(--border-color);
-            padding: 12px 16px;
-            border-radius: var(--radius-md);
+        .brand-tip {
+            background: var(--accent-dim);
+            border-left: 3px solid var(--accent);
+            padding: 10px;
+            border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+            font-size: 0.85rem;
             color: var(--text-main);
-            font-family: inherit;
+        }
+
+        .brand-tip span {
+            font-weight: 700;
+            color: var(--accent);
+            display: block;
+            margin-bottom: 2px;
+        }
+
+        /* Interactive Widgets */
+        .widget-box {
+            background: var(--card-bg);
+            border: 1px solid var(--accent);
+            border-radius: var(--radius-lg);
+            padding: 30px;
+            margin-top: 30px;
+        }
+
+        .widget-title {
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+            color: var(--accent);
+        }
+
+        .form-group {
+            margin-bottom: 16px;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            margin-bottom: 6px;
+        }
+
+        .form-control {
+            width: 100%;
+            background: var(--bg-color);
+            border: 1px solid var(--border);
+            color: var(--text-main);
+            padding: 12px;
+            border-radius: var(--radius-md);
+            font-family: var(--font-main);
+            font-size: 0.95rem;
+        }
+
+        .form-control:focus {
             outline: none;
+            border-color: var(--accent);
         }
 
-        .input-group input:focus, .input-group select:focus {
-            border-color: var(--accent-pink);
+        textarea.form-control {
+            resize: vertical;
+            min-height: 90px;
         }
 
-        .action-btn {
-            background: var(--gradient-primary);
-            color: white;
+        .btn {
+            background: var(--accent);
+            color: var(--bg-color);
             border: none;
-            padding: 14px;
+            padding: 12px 24px;
             border-radius: var(--radius-md);
             font-weight: 700;
+            font-size: 0.95rem;
+            font-family: var(--font-main);
             cursor: pointer;
-            transition: var(--transition);
-            margin-top: 8px;
+            transition: opacity 0.2s;
         }
 
-        .action-btn:hover {
+        .btn:hover {
             opacity: 0.9;
-            transform: translateY(-2px);
         }
 
-        .result-box {
+        .result-panel {
+            margin-top: 20px;
+            padding: 16px;
             background: var(--bg-color);
             border-radius: var(--radius-md);
-            border: 1px dashed var(--border-color);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            padding: 24px;
+            border: 1px solid var(--border);
+            display: none;
         }
 
-        .score-display {
-            font-size: 3rem;
-            font-weight: 800;
-            color: var(--accent-pink);
-            margin: 10px 0;
+        /* Q&A List */
+        .qa-list {
+            margin-top: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .qa-item {
+            background: var(--bg-color);
+            padding: 14px;
+            border-radius: var(--radius-md);
+            border: 1px solid var(--border);
+        }
+
+        .qa-q {
+            font-weight: 600;
+            color: var(--accent);
+            margin-bottom: 4px;
+        }
+
+        .qa-a {
+            font-size: 0.85rem;
+            color: var(--text-muted);
         }
 
         /* Footer */
         footer {
-            border-top: 1px solid var(--border-color);
-            padding: 40px 0;
+            padding: 40px 0 0;
             text-align: center;
             color: var(--text-muted);
-            font-size: 0.9rem;
+            font-size: 0.85rem;
         }
 
-        .social-links {
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-            margin-bottom: 20px;
-        }
-
-        .social-links a {
-            color: var(--text-muted);
-            text-decoration: none;
-            transition: var(--transition);
-        }
-
-        .social-links a:hover {
-            color: var(--accent-pink);
-        }
-
-        /* Responsive */
-        @media (max-width: 900px) {
-            .hero {
-                grid-template-columns: 1fr;
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2rem;
             }
-            .interactive-tool {
-                grid-template-columns: 1fr;
-            }
-        }
-
-        @media (max-width: 600px) {
-            .hero-content h1 {
-                font-size: 2.5rem;
-            }
-            .section-header {
-                flex-direction: column;
-                align-items: flex-start;
-                gap: 16px;
-            }
-            .hero-stats {
-                grid-template-columns: 1fr;
+            nav ul {
+                display: none;
             }
         }
     </style>
 </head>
 <body>
 
-    <!-- Navigation -->
-    <nav>
-        <div class="container nav-container">
-            <a href="#" class="logo">
-                <div class="logo-dot"></div>
-                PopPulse
-            </a>
-            <ul class="nav-links">
-                <li><a href="#feed" class="active">Trend Feed</a></li>
-                <li><a href="#analytics">Velocity</a></li>
-                <li><a href="#predictor">Trendometer</a></li>
-                <li><a href="#about">About</a></li>
-            </ul>
+    <!-- Header -->
+    <header>
+        <div class="container header-content">
+            <div class="brand">
+                <div class="brand-dot"></div>
+                TrendPulse
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#influencers">Influencers</a></li>
+                    <li><a href="#national-events">National Events</a></li>
+                    <li><a href="#pop-culture">Pop Culture</a></li>
+                    <li><a href="#social-media">Social Media</a></li>
+                    <li><a href="#music">Music</a></li>
+                    <li><a href="#interactive">Ask a Question</a></li>
+                </ul>
+            </nav>
         </div>
-    </nav>
+    </header>
 
     <div class="container">
         <!-- Hero Section -->
-        <section class="hero" id="about">
-            <div class="hero-content">
-                <div class="profile-badge">
-                    <div class="avatar">ZL</div>
-                    <span>Curated by Zeitgeist Lab</span>
-                </div>
-                <h1>Decoding <span class="gradient-text">Culture</span> in Real-Time</h1>
-                <p>I analyze micro-trends, viral phenomena, music shifts, and internet aesthetics before they reach the mainstream. Welcome to my personal pop culture radar.</p>
+        <div class="hero">
+            <h1>Tracking Real-Time <span>Culture Moments</span></h1>
+            <p>A central hub dissecting movements across generations and providing actionable insights for brand marketing strategy.</p>
+            <div class="audience-pills">
+                <span class="pill">Gen Z Trends</span>
+                <span class="pill">Millennial Shifts</span>
+                <span class="pill">Gen X Nostalgia</span>
+                <span class="pill">Brand Marketing Strategy</span>
             </div>
-            <div class="hero-stats">
-                <div class="stat-card">
-                    <h3 class="gradient-text">84%</h3>
-                    <p>Accuracy Rate</p>
-                </div>
-                <div class="stat-card">
-                    <h3>120+</h3>
-                    <p>Trends Tracked</p>
-                </div>
-                <div class="stat-card">
-                    <h3>Weekly</h3>
-                    <p>Data Updates</p>
-                </div>
-            </div>
-        </section>
-    </div>
-
-    <!-- Ticker Tape -->
-    <div class="ticker-wrap">
-        <div class="ticker">
-            <div class="ticker-item"><span class="highlight">RISING:</span> Neo-Y2K Aesthetics</div>
-            <div class="ticker-item"><span class="highlight">PEAKING:</span> Ambient Pop Revivals</div>
-            <div class="ticker-item"><span class="highlight">DECLINING:</span> Corporate Minimalism</div>
-            <div class="ticker-item"><span class="highlight">RISING:</span> Hyper-Niche Micro-Communities</div>
-            <div class="ticker-item"><span class="highlight">NEW:</span> AI-Generated Synthwave</div>
-            <!-- Repeat for smooth scroll -->
-            <div class="ticker-item"><span class="highlight">RISING:</span> Neo-Y2K Aesthetics</div>
-            <div class="ticker-item"><span class="highlight">PEAKING:</span> Ambient Pop Revivals</div>
-            <div class="ticker-item"><span class="highlight">DECLINING:</span> Corporate Minimalism</div>
         </div>
-    </div>
 
-    <div class="container">
-        <!-- Main Trends Feed -->
-        <section id="feed" style="margin-bottom: 60px;">
-            <div class="section-header">
-                <div>
-                    <h2 class="section-title">Current Trend Radar</h2>
-                    <p class="section-subtitle">Real-time breakdown of shifts in music, fashion, and internet culture.</p>
-                </div>
-                <div class="filter-container">
-                    <button class="filter-btn active" onclick="filterTrends('all')">All Culture</button>
-                    <button class="filter-btn" onclick="filterTrends('music')">Music</button>
-                    <button class="filter-btn" onclick="filterTrends('internet')">Internet</button>
-                    <button class="filter-btn" onclick="filterTrends('fashion')">Fashion</button>
-                    <button class="filter-btn" onclick="filterTrends('film')">Film & TV</button>
-                </div>
-            </div>
-
-            <div class="trends-grid" id="trendsGrid">
-                <!-- Dynamically populated by JS -->
-            </div>
-        </section>
-
-        <!-- Analytics / Velocity Section -->
-        <section class="analytics-section" id="analytics">
-            <div class="section-header">
-                <div>
-                    <h2 class="section-title">Cultural Velocity Index</h2>
-                    <p class="section-subtitle">Comparing the momentum of current movements.</p>
-                </div>
-            </div>
-            
-            <div class="chart-container">
-                <div class="bar-group">
-                    <div class="bar-info">
-                        <span>Digital Maximalism (Web3/VR Design)</span>
-                        <span style="color: var(--accent-pink);">92% Volume</span>
-                    </div>
-                    <div class="bar-bg">
-                        <div class="bar-fill" style="background: var(--gradient-primary);" data-width="92%"></div>
+        <!-- Section 1: Influencers -->
+        <section id="influencers">
+            <h2 class="section-title"><span class="section-num">01</span> Influencers</h2>
+            <p class="section-desc">Key creators shaping opinions, aesthetics, and purchasing habits today.</p>
+            <div class="grid">
+                <div class="card">
+                    <span class="card-tag">Creator Economy</span>
+                    <h3>Micro-Expert Creators</h3>
+                    <p>Audiences are shifting trust away from lifestyle mega-influencers toward niche experts who provide hyper-focused knowledge in cooking, tech, and finance.</p>
+                    <div class="brand-tip">
+                        <span>Marketing Opportunity</span>
+                        Partner with creators who have smaller, highly engaged audiences to build authentic product trust.
                     </div>
                 </div>
-
-                <div class="bar-group">
-                    <div class="bar-info">
-                        <span>Gorpcore & Technical Apparel</span>
-                        <span style="color: var(--accent-cyan);">78% Volume</span>
-                    </div>
-                    <div class="bar-bg">
-                        <div class="bar-fill" style="background: var(--gradient-secondary);" data-width="78%"></div>
-                    </div>
-                </div>
-
-                <div class="bar-group">
-                    <div class="bar-info">
-                        <span>Nostalgic 2000s Bloghouse Music</span>
-                        <span style="color: var(--accent-yellow);">64% Volume</span>
-                    </div>
-                    <div class="bar-bg">
-                        <div class="bar-fill" style="background: var(--accent-yellow);" data-width="64%"></div>
-                    </div>
-                </div>
-
-                <div class="bar-group">
-                    <div class="bar-info">
-                        <span>Short-Form Vertical Cinema</span>
-                        <span style="color: var(--accent-purple);">45% Volume</span>
-                    </div>
-                    <div class="bar-bg">
-                        <div class="bar-fill" style="background: var(--accent-purple);" data-width="45%"></div>
+                <div class="card">
+                    <span class="card-tag">Format Shift</span>
+                    <h3>Raw Vlog Aesthetics</h3>
+                    <p>Polished studio lighting is out. Unedited, conversational direct-to-camera videos are driving higher conversion rates across Gen Z and Millennials.</p>
+                    <div class="brand-tip">
+                        <span>Marketing Opportunity</span>
+                        Drop heavy production values in social ads in favor of mobile-shot, authentic commentary.
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Interactive Widget: The Trendometer -->
-        <section class="interactive-tool" id="predictor">
-            <div class="tool-inputs">
-                <h2 class="section-title">The Trendometer</h2>
-                <p class="section-subtitle">Spotting something interesting? Test its virality potential with my prediction algorithm.</p>
+        <!-- Section 2: National Events -->
+        <section id="national-events">
+            <h2 class="section-title"><span class="section-num">02</span> National Events</h2>
+            <p class="section-desc">Major cultural gatherings, sports events, and shared public experiences.</p>
+            <div class="grid">
+                <div class="card">
+                    <span class="card-tag">Sports & Entertainment</span>
+                    <h3>Halftime Show Virality</h3>
+                    <p>National championship halftime performances are generating more real-time meme discourse than the sports games themselves across X and TikTok.</p>
+                    <div class="brand-tip">
+                        <span>Marketing Opportunity</span>
+                        Prepare real-time social media response templates to participate in live event discourse instantly.
+                    </div>
+                </div>
+                <div class="card">
+                    <span class="card-tag">Experiential</span>
+                    <h3>Convention Culture Boom</h3>
+                    <p>Comic conventions and gaming expos are seeing record attendance from Gen X parents attending alongside their Gen Z children.</p>
+                    <div class="brand-tip">
+                        <span>Marketing Opportunity</span>
+                        Design multi-generational booth activations that appeal to both nostalgia and modern fandoms.
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 3: Pop Culture -->
+        <section id="pop-culture">
+            <h2 class="section-title"><span class="section-num">03</span> Pop Culture</h2>
+            <p class="section-desc">Film, television, aesthetic movements, and shared cross-generational phenomena.</p>
+            <div class="grid">
+                <div class="card">
+                    <span class="card-tag">Film & TV</span>
+                    <h3>Retro Sci-Fi Aesthetics</h3>
+                    <p>Neon lighting, dystopian themes, and 1980s synth visuals continue to dominate cinema box offices and streaming queues.</p>
+                    <div class="brand-tip">
+                        <span>Marketing Opportunity</span>
+                        Incorporate retro-futuristic design cues into upcoming digital campaigns to capture immediate visual attention.
+                    </div>
+                </div>
+                <div class="card">
+                    <span class="card-tag">Fashion & Lifestyle</span>
+                    <h3>Gorpcore Streetwear</h3>
+                    <p>Outdoor utility wear like hiking boots, technical jackets, and cargo pants remain a staple in casual urban fashion across all age demographics.</p>
+                    <div class="brand-tip">
+                        <span>Marketing Opportunity</span>
+                        Highlight durability and utility in product photography, even for everyday consumer goods.
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 4: Social Media Trends -->
+        <section id="social-media">
+            <h2 class="section-title"><span class="section-num">04</span> Social Media Trends</h2>
+            <p class="section-desc">Algorithmic audio, viral challenges, and platform shifts.</p>
+            <div class="grid">
+                <div class="card">
+                    <span class="card-tag">Platform Dynamics</span>
+                    <h3>Search Engine Migration</h3>
+                    <p>Younger demographics are using short-form video platforms as primary search engines for product reviews, travel tips, and recipes.</p>
+                    <div class="brand-tip">
+                        <span>Marketing Opportunity</span>
+                        Optimize video captions with descriptive keywords rather than hashtags for better search discoverability.
+                    </div>
+                </div>
+                <div class="card">
+                    <span class="card-tag">Audio Trends</span>
+                    <h3>Fast-Tempo Remixes</h3>
+                    <p>Speeding up classical or 1990s tracks by 150 percent creates instantly recognizable audio clips that boost algorithm reach.</p>
+                    <div class="brand-tip">
+                        <span>Marketing Opportunity</span>
+                        License upbeat or sped-up audio tracks for short-form video campaigns to increase viewer retention.
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 5: Music -->
+        <section id="music">
+            <h2 class="section-title"><span class="section-num">05</span> Music</h2>
+            <p class="section-desc">Genre blends, global sounds, and streaming list movements.</p>
+            <div class="grid">
+                <div class="card">
+                    <span class="card-tag">Genre Fusion</span>
+                    <h3>Country Pop Crossovers</h3>
+                    <p>Traditional country instrumentation combined with modern pop beats is topping global playlists, attracting both Gen Z and Gen X listeners.</p>
+                    <div class="brand-tip">
+                        <span>Marketing Opportunity</span>
+                        Utilize acoustic-electric hybrid soundtracks in video advertising for broad demographic appeal.
+                    </div>
+                </div>
+                <div class="card">
+                    <span class="card-tag">Global Sounds</span>
+                    <h3>Afrobeats Dominance</h3>
+                    <p>Rhythmic Afrobeats tracks are dominating summer charts and festival lineups, securing massive crossover popularity in North America and Europe.</p>
+                    <div class="brand-tip">
+                        <span>Marketing Opportunity</span>
+                        Incorporate energetic, global rhythmic audio to give commercial spots a modern, upbeat feel.
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 6: Interactive Tools & Questions -->
+        <section id="interactive">
+            <h2 class="section-title"><span class="section-num">06</span> Interactive Trend Tools</h2>
+            <p class="section-desc">Test your marketing concepts or submit questions regarding current pop culture moments.</p>
+
+            <!-- Brand Alignment Calculator -->
+            <div class="widget-box">
+                <h3 class="widget-title">Calculate Brand Trend Alignment</h3>
+                <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 20px;">Check how well a pop culture moment aligns with your marketing goals.</p>
                 
-                <div class="input-group">
-                    <label for="trendName">Trend / Phrase Name</label>
-                    <input type="text" id="trendName" placeholder="e.g. Cyber-Prep Fashion">
-                </div>
-
-                <div class="input-group">
-                    <label for="trendSource">Primary Medium</label>
-                    <select id="trendSource">
-                        <option value="tiktok">TikTok / Short Video</option>
-                        <option value="fashion">Underground Fashion</option>
-                        <option value="music">SoundCloud / Niche Music</option>
-                        <option value="tv">Streaming Series</option>
+                <div class="form-group">
+                    <label for="targetGen">Primary Target Demographic</label>
+                    <select id="targetGen" class="form-control">
+                        <option value="genz">Gen Z (Ages 12-27)</option>
+                        <option value="millennial">Millennials (Ages 28-43)</option>
+                        <option value="genx">Gen X (Ages 44-59)</option>
+                        <option value="broad">Broad Cross-Demographic</option>
                     </select>
                 </div>
 
-                <div class="input-group">
-                    <label for="trendAge">How long has it existed?</label>
-                    <select id="trendAge">
-                        <option value="days">A few days (Brand New)</option>
-                        <option value="weeks">A few weeks (Gaining Traction)</option>
-                        <option value="months">A few months (Established)</option>
+                <div class="form-group">
+                    <label for="medium">Campaign Medium</label>
+                    <select id="medium" class="form-control">
+                        <option value="social">Short-Form Video (TikTok / Reels)</option>
+                        <option value="event">Live Experiential Event</option>
+                        <option value="influencer">Influencer Sponsorship</option>
                     </select>
                 </div>
 
-                <button class="action-btn" onclick="calculateTrend()">Calculate Virality</button>
+                <button class="btn" onclick="calculateAlignment()">Check Alignment Score</button>
+
+                <div id="alignmentResult" class="result-panel">
+                    <h4 style="color: var(--accent); margin-bottom: 6px;" id="scoreText">Alignment Score: --</h4>
+                    <p style="font-size: 0.9rem; color: var(--text-muted);" id="recommendationText"></p>
+                </div>
             </div>
 
-            <div class="result-box" id="resultBox">
-                <span class="tag tag-internet">Awaiting Input</span>
-                <div class="score-display" id="scoreDisplay">--</div>
-                <p id="verdictText" style="color: var(--text-muted); font-size: 0.95rem;">Enter a phenomenon on the left to measure its cultural staying power.</p>
+            <!-- Q&A Submission Form -->
+            <div class="widget-box">
+                <h3 class="widget-title">Ask a Pop Culture Trend Question</h3>
+                <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 20px;">Curious about an emerging phrase, meme, or song? Submit your query below.</p>
+                
+                <div class="form-group">
+                    <label for="userName">Your Name or Brand</label>
+                    <input type="text" id="userName" class="form-control" placeholder="e.g. Alex from Marketing">
+                </div>
+
+                <div class="form-group">
+                    <label for="userQuestion">Your Question</label>
+                    <textarea id="userQuestion" class="form-control" placeholder="e.g. Is gorpcore fashion still relevant for fall campaigns?"></textarea>
+                </div>
+
+                <button class="btn" onclick="submitQuestion()">Submit Question</button>
+
+                <div class="qa-list" id="qaList">
+                    <!-- Default Questions -->
+                    <div class="qa-item">
+                        <div class="qa-q">Q: What video length works best for Gen Z marketing?</div>
+                        <div class="qa-a">Answer: Under 15 seconds for initial hooks, with strong visual text overlays in the first two seconds.</div>
+                    </div>
+                    <div class="qa-item">
+                        <div class="qa-q">Q: How can Gen X nostalgia be used without feeling outdated?</div>
+                        <div class="qa-a">Answer: Combine classic 1980s music tracks with modern, high-definition camera work and editing.</div>
+                    </div>
+                </div>
             </div>
         </section>
+
+        <!-- Footer -->
+        <footer>
+            <p>&copy; 2026 TrendPulse Pop Culture Tracker. All rights reserved.</p>
+        </footer>
     </div>
 
-    <!-- Footer -->
-    <footer>
-        <div class="container">
-            <div class="social-links">
-                <a href="#">Twitter / X</a>
-                <a href="#">Substack</a>
-                <a href="#">Instagram</a>
-                <a href="#">Spotify</a>
-            </div>
-            <p>&copy; 2026 Pop Culture Pulse. Curated independently.</p>
-        </div>
-    </footer>
-
-    <!-- JavaScript -->
     <script>
-        // Data Array for Pop Culture Trends
-        const trendsData = [
-            {
-                id: 1,
-                title: "Dark Academia Revival",
-                category: "fashion",
-                desc: "Tweed blazers and vintage literature aesthetics are making a second wave, blended with modern streetwear silhouettes.",
-                stage: "Rising",
-                metric: "+140% Search",
-                myTake: "Expect this to dominate autumn wardrobes as university aesthetics mix with gorpcore."
-            },
-            {
-                id: 2,
-                title: "Micro-BPM Electronic",
-                category: "music",
-                desc: "Ultra-fast track tempos (160+ BPM) borrowed from early 2000s UK garage and drum & bass are invading mainstream pop.",
-                stage: "Peak Momentum",
-                metric: "#1 Spotify Viral",
-                myTake: "Mainstream pop artists are dropping half-speed vocals over frantic drums. It’s here to stay."
-            },
-            {
-                id: 3,
-                title: "Anti-Aesthetic Vlogging",
-                category: "internet",
-                desc: "Unedited, raw, grainy video clips replacing heavily color-graded and meticulously planned social media reels.",
-                stage: "Emerging",
-                metric: "3.4M Views Avg",
-                myTake: "Audiences are fatigued by hyper-curation. Authenticity is the ultimate luxury right now."
-            },
-            {
-                id: 4,
-                title: "Neo-Noir Sci-Fi",
-                category: "film",
-                desc: "High-contrast visuals, synth-heavy soundtracks, and dystopian themes dominated recent cinema drops.",
-                stage: "Plateau",
-                metric: "$450M Box Office",
-                myTake: "Great aesthetics, but saturation is near. Directors will need stronger scripts to keep interest."
-            },
-            {
-                id: 5,
-                title: "Savantcore / Math-Pop",
-                category: "music",
-                desc: "Complex time signatures disguised under bubblegum melodies. Intricate instrumentation made accessible.",
-                stage: "Rising",
-                metric: "+85% Streams",
-                myTake: "Musicians are flexing technical skill while keeping hooks catchy. A brilliant evolution."
-            },
-            {
-                id: 6,
-                title: "Digital Analog Fusion",
-                category: "internet",
-                desc: "Using modern AI tools to generate 90s camcorder-style artifacts and VHS textures.",
-                stage: "Niche",
-                metric: "Trending on TikTok",
-                myTake: "Gen Z nostalgia for tech they barely experienced continues to drive digital design trends."
+        function calculateAlignment() {
+            const gen = document.getElementById('targetGen').value;
+            const medium = document.getElementById('medium').value;
+            const resultPanel = document.getElementById('alignmentResult');
+            const scoreText = document.getElementById('scoreText');
+            const recText = document.getElementById('recommendationText');
+
+            let score = 80;
+            let tip = "";
+
+            if (gen === 'genz' && medium === 'social') {
+                score = 95;
+                tip = "Optimal combination. High virality potential with fast feedback loops.";
+            } else if (gen === 'genx' && medium === 'social') {
+                score = 65;
+                tip = "Consider shifting toward Facebook video or longer-form YouTube placements for better Gen X reach.";
+            } else if (gen === 'millennial') {
+                score = 88;
+                tip = "Strong fit. Focus on clear product value along with authentic creator storytelling.";
+            } else {
+                score = 78;
+                tip = "Good baseline strategy. Ensure clear messaging tailored to the platform format.";
             }
-        ];
 
-        // Function to render trend cards
-        function renderTrends(filter = 'all') {
-            const container = document.getElementById('trendsGrid');
-            container.innerHTML = '';
-
-            const filteredData = filter === 'all' 
-                ? trendsData 
-                : trendsData.filter(item => item.category === filter);
-
-            filteredData.forEach(item => {
-                const card = document.createElement('div');
-                card.className = 'trend-card';
-                
-                // Color mapping for tags
-                let tagClass = 'tag-internet';
-                if(item.category === 'music') tagClass = 'tag-music';
-                if(item.category === 'fashion') tagClass = 'tag-fashion';
-                if(item.category === 'film') tagClass = 'tag-film';
-
-                card.innerHTML = `
-                    <div class="card-header">
-                        <span class="tag ${tagClass}">${item.category}</span>
-                        <span style="font-size: 0.8rem; color: var(--text-muted); font-weight:600;">${item.stage}</span>
-                    </div>
-                    <h3 class="card-title">${item.title}</h3>
-                    <p class="card-desc">${item.desc}</p>
-                    <div class="card-metrics">
-                        <div class="metric">
-                            <span class="metric-label">Status</span>
-                            <span class="metric-value up">${item.stage}</span>
-                        </div>
-                        <div class="metric">
-                            <span class="metric-label">Impact</span>
-                            <span class="metric-value peak">${item.metric}</span>
-                        </div>
-                    </div>
-                    <div class="my-take">
-                        <strong>My Take:</strong> "${item.myTake}"
-                    </div>
-                `;
-                container.appendChild(card);
-            });
+            scoreText.innerText = "Alignment Rating: " + score + "%";
+            recText.innerText = tip;
+            resultPanel.style.display = 'block';
         }
 
-        // Filter button clicks
-        function filterTrends(category) {
-            // Update active state on buttons
-            const buttons = document.querySelectorAll('.filter-btn');
-            buttons.forEach(btn => btn.classList.remove('active'));
-            event.target.classList.add('active');
+        function submitQuestion() {
+            const nameInput = document.getElementById('userName');
+            const questionInput = document.getElementById('userQuestion');
+            const qaList = document.getElementById('qaList');
 
-            renderTrends(category);
-        }
+            const name = nameInput.value.trim();
+            const question = questionInput.value.trim();
 
-        // Animate progress bars on scroll
-        function animateBars() {
-            const fills = document.querySelectorAll('.bar-fill');
-            fills.forEach(fill => {
-                const targetWidth = fill.getAttribute('data-width');
-                fill.style.width = targetWidth;
-            });
-        }
-
-        // Trendometer Calculator Logic
-        function calculateTrend() {
-            const name = document.getElementById('trendName').value.trim();
-            const source = document.getElementById('trendSource').value;
-            const age = document.getElementById('trendAge').value;
-            
-            const scoreDisplay = document.getElementById('scoreDisplay');
-            const verdictText = document.getElementById('verdictText');
-
-            if(!name) {
-                alert('Please enter a trend name first!');
+            if (!name || !question) {
+                alert("Please fill in both your name and your question.");
                 return;
             }
 
-            // Simple pseudo-algorithm for virality score
-            let score = 50;
-            
-            if (source === 'tiktok') score += 25;
-            if (source === 'fashion') score += 15;
-            if (source === 'music') score += 20;
-            if (source === 'tv') score += 10;
+            const newItem = document.createElement('div');
+            newItem.className = 'qa-item';
+            newItem.innerHTML = `
+                <div class="qa-q">Q: ${question} (Asked by ${name})</div>
+                <div class="qa-a">Answer: Question received. Our trend analysts will review this query shortly.</div>
+            `;
 
-            if (age === 'days') score += 20; // High hype potential
-            if (age === 'weeks') score += 10;
-            if (age === 'months') score -= 15; // Risk of oversaturation
+            qaList.prepend(newItem);
 
-            // Add slight randomness for dynamic feel
-            score += Math.floor(Math.random() * 10) - 5;
-            score = Math.min(99, Math.max(15, score)); // Clamp between 15 and 99
-
-            // Output narrative
-            let narrative = "";
-            if (score > 80) {
-                narrative = `<strong>"${name}"</strong> is on track for massive mainstream saturation. Expect high brand adoption soon.`;
-            } else if (score > 50) {
-                narrative = `<strong>"${name}"</strong> has steady underground traction. Perfect for niche subcultures.`;
-            } else {
-                narrative = `<strong>"${name}"</strong> may be fading or overly saturated. Approach with caution.`;
-            }
-
-            // Animate counter
-            let current = 0;
-            const timer = setInterval(() => {
-                if(current >= score) {
-                    clearInterval(timer);
-                } else {
-                    current++;
-                    scoreDisplay.innerText = current + "/100";
-                }
-            }, 15);
-
-            verdictText.innerHTML = narrative;
+            nameInput.value = '';
+            questionInput.value = '';
         }
-
-        // On Load Initializations
-        window.onload = () => {
-            renderTrends();
-            // Trigger bar animation shortly after loading
-            setTimeout(animateBars, 300);
-        };
     </script>
 </body>
 </html>
